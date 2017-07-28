@@ -2,7 +2,7 @@ package me.dj.mynetwecker;
 
 
 import android.app.Activity;
-import android.app.KeyguardManager;
+import android.app.Notification;
 import android.content.Context;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
@@ -10,6 +10,8 @@ import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.PowerManager;
 import android.os.Vibrator;
+import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.NotificationManagerCompat;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
@@ -74,6 +76,7 @@ public class WakeUpHandler extends Thread{
                                 public void run() {
                                     g_InvokerText.setText(myInString[3].substring("invokername=".length()));
                                     g_InvokerText.setVisibility(View.VISIBLE);
+                                    spawnNotification(myInString[3].substring("invokername=".length()));
 
                                     PowerManager pm = (PowerManager) g_myAct.getApplicationContext().getSystemService(Context.POWER_SERVICE);
                                     PowerManager.WakeLock wakeLock = pm.newWakeLock((PowerManager.SCREEN_BRIGHT_WAKE_LOCK | PowerManager.FULL_WAKE_LOCK | PowerManager.ACQUIRE_CAUSES_WAKEUP), "TAG");
@@ -125,5 +128,19 @@ public class WakeUpHandler extends Thread{
             }catch(IOException e){}
         }
         return true;
+    }
+
+    public void spawnNotification(String p_invoker){
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(g_myContext);
+        int color = g_myContext.getResources().getColor(R.color.colorMyRed);
+        builder
+                .setSmallIcon(R.drawable.ic_notifications_black_24dp)
+                .setContentTitle(g_myAct.getString(R.string.strWakeTitle))
+                .setContentText(p_invoker + " wants sex!")
+                .setColor(color);
+
+        Notification notification = builder.build();
+        NotificationManagerCompat.from(g_myContext).notify(0, notification);
+
     }
 }

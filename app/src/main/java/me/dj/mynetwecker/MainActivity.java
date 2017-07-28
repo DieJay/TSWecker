@@ -30,7 +30,6 @@ public class MainActivity extends AppCompatActivity {
     private Button btnSettings;
 
     private ToggleButton tglBtnOnOff;
-
     private WakeUpHandler myWakeUp;
 
     @Override

@@ -1,6 +1,5 @@
 package me.dj.mynetwecker;
 
-import android.app.KeyguardManager;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.media.MediaPlayer;

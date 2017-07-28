@@ -14,6 +14,7 @@
     <string name="strNoAuthKey">Please enter an Auth Key!</string>
     <string name="strNoConnect">No connection to Server</string>
     <string name="strSettingsSafed">Settings Safed!</string>
+    <string name="strWakeTitle" translatable="false">Hey! Wake Up!</string>
 
 
 </resources>
