@@ -2,8 +2,13 @@ package me.dj.mynetwecker;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Vibrator;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.ToggleButton;
 
 public class DjsVars{
 
@@ -14,6 +19,11 @@ public class DjsVars{
     public static final String LogTAG = "DjsLog";
     public static MediaPlayer const_mp;
 
+    public static ToggleButton tglBtnOnOff;
+    public static WakeUpHandler myWakeUp;
+    public static TextView txtVwInvoker;
+    public static Button btnSettings;
+    public static EditText edtTxtPw;
 
     public static String const_PassWord;
     public static String const_HostAddress;
@@ -23,6 +33,30 @@ public class DjsVars{
 
     private DjsVars(){}
 
+    public static void muteAlarm(){
+        tglBtnOnOff.setChecked(false);
+        const_mp.stop();
+        if(myVibr != null){
+            myVibr.cancel();
+        }
+        if(const_mp != null) {
+            const_mp.stop();
+        }
+        if(myWakeUp != null){
+            if(myWakeUp.myAudio != null){
+                myWakeUp.myAudio.setStreamVolume(AudioManager.STREAM_MUSIC, myWakeUp.oldVol, 0);
+            }
+        }
+        if(txtVwInvoker != null){
+            txtVwInvoker.setText("");
+        }
+        if(btnSettings != null){
+            btnSettings.setEnabled(true);
+        }
+        if(edtTxtPw != null){
+            edtTxtPw.setEnabled(true);
+        }
+    }
 
     public static void setPref(MainActivity myAct) {
         mySavedSettings = myAct.getPreferences(Context.MODE_PRIVATE);

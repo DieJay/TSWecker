@@ -15,6 +15,7 @@
     <string name="strNoConnect">No connection to Server</string>
     <string name="strSettingsSafed">Settings Safed!</string>
     <string name="strWakeTitle" translatable="false">Hey! Wake Up!</string>
+    <string name="strMute">Mute</string>
 
 
 </resources>

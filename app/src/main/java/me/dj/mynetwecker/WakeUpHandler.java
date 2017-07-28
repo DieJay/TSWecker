@@ -3,7 +3,9 @@ package me.dj.mynetwecker;
 
 import android.app.Activity;
 import android.app.Notification;
+import android.app.PendingIntent;
 import android.content.Context;
+import android.content.Intent;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.media.RingtoneManager;
@@ -133,11 +135,17 @@ public class WakeUpHandler extends Thread{
     public void spawnNotification(String p_invoker){
         NotificationCompat.Builder builder = new NotificationCompat.Builder(g_myContext);
         int color = g_myContext.getResources().getColor(R.color.colorMyRed);
+        Intent intent = new Intent(g_myContext, NoteActivity.class);
+        PendingIntent pIntent = PendingIntent.getActivity(g_myContext, 1, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+
         builder
+                .setStyle(new NotificationCompat.BigTextStyle())
                 .setSmallIcon(R.drawable.ic_notifications_black_24dp)
                 .setContentTitle(g_myAct.getString(R.string.strWakeTitle))
-                .setContentText(p_invoker + " wants sex!")
+                .setContentText(p_invoker + " poked you!")
                 .setColor(color);
+
+        builder.addAction(R.drawable.ic_info_black_24dp, g_myAct.getString(R.string.strMute), pIntent);
 
         Notification notification = builder.build();
         NotificationManagerCompat.from(g_myContext).notify(0, notification);

@@ -18,19 +18,17 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
+import static me.dj.mynetwecker.DjsVars.tglBtnOnOff;
 import static me.dj.mynetwecker.DjsVars.LogTAG;
-
-/*GitHub release*/
+import static me.dj.mynetwecker.DjsVars.myWakeUp;
+import static me.dj.mynetwecker.DjsVars.txtVwInvoker;
+import static me.dj.mynetwecker.DjsVars.btnSettings;
+import static me.dj.mynetwecker.DjsVars.edtTxtPw;
 
 public class MainActivity extends AppCompatActivity {
 
     private Context g_myContext = this;
     private Activity g_myAct = this;
-    private EditText edtTxtPw;
-    private Button btnSettings;
-
-    private ToggleButton tglBtnOnOff;
-    private WakeUpHandler myWakeUp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
         tglBtnOnOff = (ToggleButton) findViewById(R.id.tglBtnOnOff);
         edtTxtPw = (EditText) findViewById(R.id.edtTxtPw);
         btnSettings = (Button) findViewById(R.id.btnSettings);
-        final TextView txtVwInvoker = (TextView) findViewById(R.id.txtVwInvoker);
+        txtVwInvoker = (TextView) findViewById(R.id.txtVwInvoker);
 
         txtVwInvoker.setVisibility(View.INVISIBLE);
 
