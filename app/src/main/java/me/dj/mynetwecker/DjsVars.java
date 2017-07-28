@@ -10,13 +10,21 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
+import java.net.MalformedURLException;
+import java.net.URL;
+
 public class DjsVars{
+
+    public static final int const_Version = 99;
+
 
     private static SharedPreferences mySavedSettings;
 
     public static Vibrator myVibr;
     public static final long[] vibrPattern = {0, 1500, 250};
     public static final String LogTAG = "DjsLog";
+
+    public static URL updateDir;
     public static MediaPlayer const_mp;
 
     public static ToggleButton tglBtnOnOff;
@@ -31,7 +39,18 @@ public class DjsVars{
     public static String const_WakePhrase;
 
 
+
+
+
     private DjsVars(){}
+
+    public static void setUrl(){
+        try {
+            updateDir = new URL("http://macoga.de/apk/TSWecker/");
+        } catch (MalformedURLException e1) {
+            e1.printStackTrace();
+        }
+    }
 
     public static void muteAlarm(){
         tglBtnOnOff.setChecked(false);
