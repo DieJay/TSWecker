@@ -2,11 +2,13 @@ package me.dj.mynetwecker;
 
 
 import android.app.Activity;
+import android.app.KeyguardManager;
 import android.content.Context;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.media.RingtoneManager;
 import android.net.Uri;
+import android.os.PowerManager;
 import android.os.Vibrator;
 import android.util.Log;
 import android.view.View;
@@ -72,8 +74,14 @@ public class WakeUpHandler extends Thread{
                                 public void run() {
                                     g_InvokerText.setText(myInString[3].substring("invokername=".length()));
                                     g_InvokerText.setVisibility(View.VISIBLE);
+
+                                    PowerManager pm = (PowerManager) g_myAct.getApplicationContext().getSystemService(Context.POWER_SERVICE);
+                                    PowerManager.WakeLock wakeLock = pm.newWakeLock((PowerManager.SCREEN_BRIGHT_WAKE_LOCK | PowerManager.FULL_WAKE_LOCK | PowerManager.ACQUIRE_CAUSES_WAKEUP), "TAG");
+                                    wakeLock.acquire();
                                 }
                             });
+
+
 
                             Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);
                             DjsVars.const_mp = MediaPlayer.create(g_myContext.getApplicationContext(), notification);
