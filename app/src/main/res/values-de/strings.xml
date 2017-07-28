@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">My Net Wecker</string>
+    <string name="strCorrectPW">Passwort stimmt!</string>
+    <string name="strEnterPin">Bitte Passwort eingeben!</string>
+    <string name="strInvalidPW">Ungültiges Passwort!</string>
+    <string name="strPwHint">Passwort</string>
+    <string name="strTurnedOff">Alarm wurde deaktiviert!</string>
+    <string name="strTurnedOn">Alarm wurde aktiviert!</string>
+    <string name="strSettings">Einstellungen</string>
+    <string name="strConfirm">Bestätigen</string>
+    <string name="strPokeWord">Poke Phrase</string>
+    <string name="strNoAuthKey">Bitte Auth Key eingeben!</string>
+    <string name="strNoConnect">Keine Verbindung zum Server</string>
+    <string name="strNoIP">Bitte eine Host Adresse eingeben</string>
+    <string name="strSettingsSafed">Einstellungen gespeichert!</string>
+</resources>

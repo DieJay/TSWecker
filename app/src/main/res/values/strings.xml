@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">My Net Wecker</string>
+    <string name="strPwHint">Password</string>
+    <string name="strEnterPin">Please enter a Password!</string>
+    <string name="strTurnedOff">Alarm is now turned off!</string>
+    <string name="strCorrectPW">Password is correct!</string>
+    <string name="strInvalidPW">The Password is wrong!</string>
+    <string name="strTurnedOn">The Alarm is now turned on!</string>
+    <string name="strSettings">Settings</string>
+    <string name="title_activity_settings" translatable="false">@string/strSettings</string>
+    <string name="strConfirm">Confirm</string>
+    <string name="strPokeWord">Poke Phrase</string>
+    <string name="strNoIP">Please enter a Host Address! (IP)</string>
+    <string name="strNoAuthKey">Please enter an Auth Key!</string>
+    <string name="strNoConnect">No connection to Server</string>
+    <string name="strSettingsSafed">Settings Safed!</string>
+
+
+</resources>
