@@ -25,21 +25,21 @@ import java.io.PrintWriter;
 import java.net.Socket;
 
 import static me.dj.mynetwecker.DjsVars.keepRunning;
+import static me.dj.mynetwecker.DjsVars.g_myAct;
+
 
 public class WakeUpHandler extends Thread{
 
     private boolean isFirstMsg = true;
 
     private Context g_myContext;
-    private Activity g_myAct;
     private TextView g_InvokerText;
 
     public int oldVol;
     public AudioManager myAudio;
 
-    public WakeUpHandler(Context p_myContext, Activity p_myAct, TextView p_InvokerText){
+    public WakeUpHandler(Context p_myContext, TextView p_InvokerText){
         g_myContext = p_myContext;
-        g_myAct = p_myAct;
         g_InvokerText = p_InvokerText;
     }
 
@@ -73,7 +73,15 @@ public class WakeUpHandler extends Thread{
                 if(isFirstMsg){
                     isFirstMsg = false;
                     out.println("auth apikey=" + DjsVars.const_AuthKey);
-                    Log.d(DjsVars.LogTAG, "Authkey was send!");
+                    Log.i(DjsVars.LogTAG, "Authkey was send!");
+                    inCum = in.readLine();
+                    Log.d(DjsVars.LogTAG, "KOmmt hier noch irwas?");
+                    Log.d(DjsVars.LogTAG + "INCUMMMMM", inCum);
+                    if(inCum.startsWith("error id=1538")){
+                        Log.e(DjsVars.LogTAG, "Wrong Auth Key detected!");
+                        DjsVars.spawnToast(g_myAct.getString(R.string.strInvalidAuth));
+                        return;
+                    }
                     out.println("clientnotifyregister schandlerid=0 event=notifyclientpoke");
                     Log.d(DjsVars.LogTAG, "Registered!");
                 }else{
@@ -110,7 +118,7 @@ public class WakeUpHandler extends Thread{
                     }
                 }
             }
-        }catch (Exception e){
+        }catch (IOException e){
             Log.e(DjsVars.LogTAG, "An error occured!");
             if(DjsVars.const_mp != null) {
                 DjsVars.const_mp.stop();
@@ -118,19 +126,16 @@ public class WakeUpHandler extends Thread{
             }
             e.printStackTrace();
         }
-
-
-
     }
 
 
     public boolean isOnline(){
-        setPrgBarVisible(true);
+        //setPrgBarVisible(true);
         Socket myConnectionTest = null;
         try{
             myConnectionTest = new Socket(DjsVars.const_HostAddress, 25639);
         }catch(IOException e){
-            setPrgBarVisible(false);
+            //setPrgBarVisible(false);
             DjsVars.isOnline = false;
             return false;
         }finally {
@@ -140,12 +145,12 @@ public class WakeUpHandler extends Thread{
                 }
             }catch(IOException e){}
         }
-        setPrgBarVisible(false);
+        //setPrgBarVisible(false);
         DjsVars.isOnline = true;
         return true;
     }
 
-    private void setPrgBarVisible(boolean p_val){
+    /*private void setPrgBarVisible(boolean p_val){
 
         final int intVal;
 
@@ -161,7 +166,7 @@ public class WakeUpHandler extends Thread{
                 DjsVars.prgBar.setVisibility(intVal);
             }
         });
-    }
+    }*/
 
     public void spawnNotification(String p_invoker){
         NotificationCompat.Builder builder = new NotificationCompat.Builder(g_myContext);

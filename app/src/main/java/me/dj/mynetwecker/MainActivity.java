@@ -25,11 +25,12 @@ import static me.dj.mynetwecker.DjsVars.myWakeUp;
 import static me.dj.mynetwecker.DjsVars.txtVwInvoker;
 import static me.dj.mynetwecker.DjsVars.btnSettings;
 import static me.dj.mynetwecker.DjsVars.edtTxtPw;
+import static me.dj.mynetwecker.DjsVars.g_myAct;
 
 public class MainActivity extends AppCompatActivity {
 
+    private Activity myAct = this;
     private Context g_myContext = this;
-    private Activity g_myAct = this;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
 
         DjsVars.setPref(this);
         DjsVars.getSavedVals();//Fetch Saved Values from Android Storage
+        g_myAct = myAct;
 
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
@@ -74,23 +76,23 @@ public class MainActivity extends AppCompatActivity {
                     }else{
                         if(edtTxtPw.getText().toString().equals(DjsVars.const_PassWord)){
 
-                            myWakeUp = new WakeUpHandler(g_myContext, g_myAct, txtVwInvoker);
+                            myWakeUp = new WakeUpHandler(g_myContext, txtVwInvoker);
 
                             if(DjsVars.const_HostAddress != null) {
                                 if(DjsVars.const_AuthKey != null) {
                                     if(!DjsVars.const_AuthKey.isEmpty()){
 
-                                        if(myWakeUp.isOnline()){
+                                        //if(myWakeUp.isOnline()){
                                             myWakeUp.start();
                                             edtTxtPw.setEnabled(false);
                                             btnSettings.setEnabled(false);
                                             Toast.makeText(getBaseContext(), getString(R.string.strTurnedOn), Toast.LENGTH_SHORT).show();
-                                        }else{
+                                        /*}else{
                                             btnSettings.setEnabled(true);
                                             edtTxtPw.setEnabled(true);
                                             tglBtnOnOff.setChecked(false);
                                             Toast.makeText(getBaseContext(), getString(R.string.strNoConnect), Toast.LENGTH_SHORT).show();
-                                        }
+                                        }*/
 
                                     }else{
                                         noAuthKey();

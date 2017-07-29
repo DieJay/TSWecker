@@ -45,7 +45,7 @@ public class SettingsActivity extends AppCompatActivity {
 
         DjsVars.updateSavedVals();
 
-        Toast.makeText(getBaseContext(), getString(R.string.strSettingsSafed), Toast.LENGTH_SHORT).show();
+        Toast.makeText(getBaseContext(), getString(R.string.strSettingsSaved), Toast.LENGTH_SHORT).show();
 
     }
 }

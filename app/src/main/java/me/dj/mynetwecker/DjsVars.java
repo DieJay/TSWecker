@@ -1,5 +1,6 @@
 package me.dj.mynetwecker;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.media.AudioManager;
@@ -9,6 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import java.net.MalformedURLException;
@@ -17,7 +19,6 @@ import java.net.URL;
 public class DjsVars{
 
     public static final int const_Version = 99;
-
 
     private static SharedPreferences mySavedSettings;
 
@@ -28,6 +29,7 @@ public class DjsVars{
     public static URL updateDir;
     public static MediaPlayer const_mp;
 
+    public static Activity g_myAct;
     public static ToggleButton tglBtnOnOff;
     public static WakeUpHandler myWakeUp;
     public static TextView txtVwInvoker;
@@ -42,11 +44,17 @@ public class DjsVars{
     public static String const_AuthKey;
     public static String const_WakePhrase;
 
-
-
-
-
     private DjsVars(){}
+
+    public static void spawnToast(final String p_msg){
+        g_myAct.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                Toast.makeText( g_myAct.getBaseContext(), p_msg, Toast.LENGTH_SHORT).show();
+            }
+        });
+
+    }
 
     public static void setUrl(){
         try {

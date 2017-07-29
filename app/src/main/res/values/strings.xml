@@ -13,9 +13,10 @@
     <string name="strNoIP">Please enter a Host Address! (IP)</string>
     <string name="strNoAuthKey">Please enter an Auth Key!</string>
     <string name="strNoConnect">No connection to Server</string>
-    <string name="strSettingsSafed">Settings Safed!</string>
+    <string name="strSettingsSaved">Settings Saved!</string>
     <string name="strWakeTitle" translatable="false">Hey! Wake Up!</string>
     <string name="strMute">Mute</string>
+    <string name="strInvalidAuth">Wrong Auth Key! Please Check</string>
 
 
 </resources>

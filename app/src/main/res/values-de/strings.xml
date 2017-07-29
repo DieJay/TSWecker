@@ -13,6 +13,7 @@
     <string name="strNoAuthKey">Bitte Auth Key eingeben!</string>
     <string name="strNoConnect">Keine Verbindung zum Server</string>
     <string name="strNoIP">Bitte eine Host Adresse eingeben</string>
-    <string name="strSettingsSafed">Einstellungen gespeichert!</string>
+    <string name="strSettingsSaved">Einstellungen gespeichert!</string>
     <string name="strMute">Stumm</string>
+    <string name="strInvalidAuth">Ungültiger Auth key! Bitte prüfen</string>
 </resources>
