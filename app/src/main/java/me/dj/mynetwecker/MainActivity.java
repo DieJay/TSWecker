@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
@@ -45,7 +46,9 @@ public class MainActivity extends AppCompatActivity {
         edtTxtPw = (EditText) findViewById(R.id.edtTxtPw);
         btnSettings = (Button) findViewById(R.id.btnSettings);
         txtVwInvoker = (TextView) findViewById(R.id.txtVwInvoker);
+        DjsVars.prgBar = (ProgressBar) findViewById(R.id.prgBar);
 
+        DjsVars.prgBar.setVisibility(View.INVISIBLE);
         txtVwInvoker.setVisibility(View.INVISIBLE);
 
         tglBtnOnOff.setOnClickListener(new View.OnClickListener() {

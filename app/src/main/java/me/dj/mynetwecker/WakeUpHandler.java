@@ -24,11 +24,11 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 
+import static me.dj.mynetwecker.DjsVars.keepRunning;
+
 public class WakeUpHandler extends Thread{
 
-    private boolean keepRunning = true;
     private boolean isFirstMsg = true;
-
 
     private Context g_myContext;
     private Activity g_myAct;
@@ -51,12 +51,20 @@ public class WakeUpHandler extends Thread{
 
     public void run(){
 
-        try {
-            String inCum = null; //( ͡° ͜ʖ ͡°)
+        if(!isOnline()){
+            keepRunning = false;
+        }
 
-            Socket mySocket = new Socket(DjsVars.const_HostAddress, 25639);
-            BufferedReader in = new BufferedReader(new InputStreamReader(mySocket.getInputStream()));
-            PrintWriter out = new PrintWriter(mySocket.getOutputStream(), true);
+        try {
+            String inCum = null;//( ͡° ͜ʖ ͡°)
+            Socket mySocket = null;
+            BufferedReader in = null;
+            PrintWriter out = null;
+            if(keepRunning){
+                mySocket = new Socket(DjsVars.const_HostAddress, 25639);
+                in = new BufferedReader(new InputStreamReader(mySocket.getInputStream()));
+                out = new PrintWriter(mySocket.getOutputStream(), true);
+            }
             while (keepRunning) {
 
                 inCum = in.readLine();
@@ -117,10 +125,13 @@ public class WakeUpHandler extends Thread{
 
 
     public boolean isOnline(){
+        setPrgBarVisible(true);
         Socket myConnectionTest = null;
         try{
             myConnectionTest = new Socket(DjsVars.const_HostAddress, 25639);
         }catch(IOException e){
+            setPrgBarVisible(false);
+            DjsVars.isOnline = false;
             return false;
         }finally {
             try{
@@ -129,7 +140,27 @@ public class WakeUpHandler extends Thread{
                 }
             }catch(IOException e){}
         }
+        setPrgBarVisible(false);
+        DjsVars.isOnline = true;
         return true;
+    }
+
+    private void setPrgBarVisible(boolean p_val){
+
+        final int intVal;
+
+        if (p_val){
+            intVal = View.VISIBLE;
+        }else{
+            intVal = View.INVISIBLE;
+        }
+
+        g_myAct.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                DjsVars.prgBar.setVisibility(intVal);
+            }
+        });
     }
 
     public void spawnNotification(String p_invoker){

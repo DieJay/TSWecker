@@ -7,6 +7,7 @@ import android.media.MediaPlayer;
 import android.os.Vibrator;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
@@ -32,6 +33,9 @@ public class DjsVars{
     public static TextView txtVwInvoker;
     public static Button btnSettings;
     public static EditText edtTxtPw;
+    public static ProgressBar prgBar;
+    public static boolean keepRunning = true;
+    public static boolean isOnline = false;
 
     public static String const_PassWord;
     public static String const_HostAddress;
