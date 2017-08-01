@@ -51,6 +51,8 @@ public class WakeUpHandler extends Thread{
 
     public void run(){
 
+        keepRunning = true;
+
         if(!isOnline()){
             keepRunning = false;
         }
@@ -69,14 +71,12 @@ public class WakeUpHandler extends Thread{
 
                 inCum = in.readLine();
                 if(inCum == null){break;}
-                Log.d(DjsVars.LogTAG + "Cum", inCum);
+                Log.d(DjsVars.LogTAG, inCum);
                 if(isFirstMsg){
                     isFirstMsg = false;
                     out.println("auth apikey=" + DjsVars.const_AuthKey);
                     Log.i(DjsVars.LogTAG, "Authkey was send!");
                     inCum = in.readLine();
-                    Log.d(DjsVars.LogTAG, "KOmmt hier noch irwas?");
-                    Log.d(DjsVars.LogTAG + "INCUMMMMM", inCum);
                     if(inCum.startsWith("error id=1538")){
                         Log.e(DjsVars.LogTAG, "Wrong Auth Key detected!");
                         DjsVars.spawnToast(g_myAct.getString(R.string.strInvalidAuth));
@@ -118,6 +118,8 @@ public class WakeUpHandler extends Thread{
                     }
                 }
             }
+            keepRunning = false;
+            this.interrupt();
         }catch (IOException e){
             Log.e(DjsVars.LogTAG, "An error occured!");
             if(DjsVars.const_mp != null) {

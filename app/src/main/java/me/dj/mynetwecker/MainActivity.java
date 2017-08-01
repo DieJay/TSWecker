@@ -76,6 +76,7 @@ public class MainActivity extends AppCompatActivity {
                     }else{
                         if(edtTxtPw.getText().toString().equals(DjsVars.const_PassWord)){
 
+                            myWakeUp = null;
                             myWakeUp = new WakeUpHandler(g_myContext, txtVwInvoker);
 
                             if(DjsVars.const_HostAddress != null) {
@@ -83,6 +84,8 @@ public class MainActivity extends AppCompatActivity {
                                     if(!DjsVars.const_AuthKey.isEmpty()){
 
                                         //if(myWakeUp.isOnline()){
+                                            Log.d(DjsVars.LogTAG, "Alarm is now on");
+                                            Log.d(DjsVars.LogTAG, "Keeprunning: " + DjsVars.keepRunning);
                                             myWakeUp.start();
                                             edtTxtPw.setEnabled(false);
                                             btnSettings.setEnabled(false);
@@ -134,6 +137,7 @@ public class MainActivity extends AppCompatActivity {
                    btnSettings.setEnabled(true);
                    txtVwInvoker.setVisibility(View.INVISIBLE);
                    myWakeUp.closeConnection();
+                   DjsVars.keepRunning = false;
                    if(DjsVars.const_mp != null) {
                        DjsVars.const_mp.stop();
                    }
@@ -141,6 +145,7 @@ public class MainActivity extends AppCompatActivity {
                        myWakeUp.myAudio.setStreamVolume(AudioManager.STREAM_MUSIC, myWakeUp.oldVol, 0);
                    }
                    Log.d(LogTAG, "Alarm is now turned off!");
+                   Log.d(DjsVars.LogTAG, "Keeprunning: " + DjsVars.keepRunning);
                 }
             }
         });
